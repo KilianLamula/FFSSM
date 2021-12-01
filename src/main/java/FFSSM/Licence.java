@@ -39,14 +39,25 @@ public class Licence {
     }
 
     /**
-     * Est-ce que la licence est valide à la date indiquée ?
-     * Une licence est valide pendant un an à compter de sa date de délivrance
+     * Est-ce que la licence est valide à la date indiquée ? Une licence est
+     * valide pendant un an à compter de sa date de délivrance
+     *
      * @param d la date à tester
      * @return vrai si valide à la date d
-     **/
+     *
+     */
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        boolean res = true;
+
+        //On récupère la date de délivrance et on lui ajoute un an
+        LocalDate dateVerif = this.getDelivrance().plusYears(1);
+
+        //Si la dateVerif est dépassée par la date indiquée alors la licence n'est plus valise : res=false
+        if (d.isAfter(dateVerif)) {
+            res = false;
+        }
+
+        return res;
     }
 
 }
